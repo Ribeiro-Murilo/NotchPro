@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var modelContainer:  ModelContainer!
     private var windowController: NotchWindowController!
     private var statusItem:      NSStatusItem!
+    private var screenshotMonitor: ScreenshotMonitor!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
@@ -36,6 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             settings:      settings
         )
         windowController.setup()
+        screenshotMonitor = ScreenshotMonitor(fileViewModel: fileViewModel)
         setupStatusItem()
     }
 
