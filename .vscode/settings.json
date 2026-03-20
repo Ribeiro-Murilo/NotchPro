@@ -1,0 +1,9 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "system_profiler": true,
+        "/^cd /Users/mac/Repositorios/NotchPro/NotchPro && \\\\\npython3 -c \"\nimport re\nwith open\\('NotchPro\\.xcodeproj/project\\.pbxproj', 'r'\\) as f:\n    content = f\\.read\\(\\)\n\n# Conta quantas ocorrências de INFOPLIST_KEY_NSHumanReadableCopyright existem\n# e insere LSUIElement apenas para o target NotchPro \\(não nos targets de teste\\)\n# Inserir após GENERATE_INFOPLIST_FILE = YES; que é seguido de INFOPLIST_KEY_NSHumanReadableCopyright\ninsert_line = '                INFOPLIST_KEY_LSUIElement = YES;\\\\n'\ntarget = 'GENERATE_INFOPLIST_FILE = YES;\\\\n                INFOPLIST_KEY_NSHumanReadableCopyright'\nreplacement = 'GENERATE_INFOPLIST_FILE = YES;\\\\n' \\+ insert_line \\+ '                INFOPLIST_KEY_NSHumanReadableCopyright'\n\n# Só as primeiras 2 ocorrências \\(Debug e Release do target principal\\)\ncount = 0\nresult = \\[\\]\ni = 0\nwhile i < len\\(content\\):\n    idx = content\\.find\\(target, i\\)\n    if idx == -1:\n        result\\.append\\(content\\[i:\\]\\)\n        break\n    result\\.append\\(content\\[i:idx\\]\\)\n    if count < 2:\n        result\\.append\\(replacement\\)\n        count \\+= 1\n    else:\n        result\\.append\\(target\\)\n    i = idx \\+ len\\(target\\)\n\nfinal = ''\\.join\\(result\\)\nwith open\\('NotchPro\\.xcodeproj/project\\.pbxproj', 'w'\\) as f:\n    f\\.write\\(final\\)\nprint\\(f'Replaced \\{count\\} occurrences'\\)\n\"\n$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
